@@ -9,6 +9,14 @@
 <body>
     <div class="container mt-5">
         <h2>Edit Asisten</h2>
+
+        <!-- Display success message if available -->
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <form id="editAsistenForm" action="{{ route('asistens.update', $asisten->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -17,33 +25,41 @@
                 <label for="npm" class="form-label">NPM</label>
                 <input type="text" name="npm" class="form-control" value="{{ $asisten->npm }}" required>
             </div>
+
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" name="nama" class="form-control" value="{{ $asisten->nama }}" required>
             </div>
+
             <div class="mb-3">
                 <label for="id_kelas" class="form-label">Kelas</label>
-                <select name="id_kelas" class="form-select" required>
+                <select name="kelas_id[]" class="form-select" multiple required>
                     @foreach ($kelas as $kelasItem)
-                        <option value="{{ $kelasItem->id_kelas }}" {{ $asisten->id_kelas == $kelasItem->id_kelas ? 'selected' : '' }}>
-                            {{ $kelasItem->nama_kelas }}
+                        <option value="{{ $kelasItem->id_kelas }}" 
+                            @if(in_array($kelasItem->id_kelas, $asisten->kelas->pluck('id_kelas')->toArray())) selected @endif>
+                            {{ $kelasItem->nama_kelas }} - {{ $kelasItem->mata_proyek }}
                         </option>
                     @endforeach
                 </select>
             </div>
+
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" value="{{ $asisten->user->email ?? '' }}" required>
             </div>
+
             <div class="mb-3">
                 <label for="password" class="form-label">Password (kosongkan jika tidak ingin mengubah)</label>
                 <input type="password" name="password" class="form-control" placeholder="Password">
             </div>
+
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmUpdateModal">
                 Update
             </button>
+
             <a href="{{ route('data.asistens.index') }}" class="btn btn-secondary">Kembali</a>
 
+            <!-- Modal for confirmation -->
             <div class="modal fade" id="confirmUpdateModal" tabindex="-1" aria-labelledby="confirmUpdateModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

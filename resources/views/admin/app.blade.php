@@ -66,6 +66,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('jadwal-praktikum.index') }}">Jadwal Praktikum</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('jadwal-praktikum.index') }}">Jadwal Praktikum</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.hasil-absensi.index') }}">Absensi Mahasiswa</a>
+                    </li>
                 </ul>
                 <div class="logout-link">
                     <a class="nav-link text-danger" href="{{ route('logout') }}"

@@ -1,21 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\AdminController;
+
+use App\Http\Controllers\AsistenController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Asisten\ArsipController;
+use App\Http\Controllers\Asisten\NilaiController;
+
 use App\Http\Controllers\Admin\DataAsistenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
 use App\Http\Controllers\Admin\JadwalPraktikumController;
-
-use App\Http\Controllers\AsistenController;
-use App\Http\Controllers\Asisten\AbsensiMahasiswaController;
 use App\Http\Controllers\Asisten\AbsensiAsistenController;
-use App\Http\Controllers\Asisten\NilaiController;
-use App\Http\Controllers\Asisten\ArsipController;
+use App\Http\Controllers\Asisten\AbsensiMahasiswaController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\HasilAbsensiMahasiswaController;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
     ->name('login')
@@ -57,7 +58,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/jadwal-praktikum/{id}/edit', [JadwalPraktikumController::class, 'edit'])->name('jadwal-praktikum.edit');
         Route::put('/jadwal-praktikum/{id}', [JadwalPraktikumController::class, 'update'])->name('jadwal-praktikum.update');
         Route::delete('/jadwal-praktikum/{id}', [JadwalPraktikumController::class, 'destroy'])->name('jadwal-praktikum.destroy');
+
+        Route::get('/admin/absensi_mahasiswa', [HasilAbsensiMahasiswaController::class, 'index'])->name('admin.kelas.proyek');
+        Route::get('/admin/hasil-absen/{id_kelas}', [HasilAbsensiMahasiswaController::class, 'rekapAbsensi'])->name('admin.rekap.absensi');
+        Route::get('/admin/hasil-absensi', [HasilAbsensiMahasiswaController::class, 'index'])->name('admin.hasil-absensi.index');
+
+        // Route::get('/hasil-absensi/download-pdf', [HasilAbsensiMahasiswaController::class, 'downloadPDF'])->name('admin.hasil-absensi.download-pdf');
+        // Route::get('/hasil-absensi/download-excel', [HasilAbsensiMahasiswaController::class, 'downloadExcel'])->name('admin.hasil-absensi.download-excel');
     });
+
+
 
     // Asisten
     Route::middleware(['asisten'])->group(function () {
@@ -84,4 +94,4 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -19,10 +19,11 @@
             </div>
         @endif
 
-        <button class="btn btn-dark mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#formTambahAsisten" aria-expanded="false" aria-controls="formTambahAsisten">
+        <button class="btn" style="background-color: #0446b0; color: white; font-family: 'Arial', sans-serif;" type="button" data-bs-toggle="collapse" data-bs-target="#formTambahAsisten" aria-expanded="false" aria-controls="formTambahAsisten">
             Tambah
         </button>
-
+        <br>
+        <br>
         <div class="collapse" id="formTambahAsisten">
             <div class="card mb-4">
                 <div class="card-body">
@@ -40,7 +41,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
-                            <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Asisten" required readonly>
+                            <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Asisten" required>
                         </div>
                         <div class="mb-3">
                             <label for="photo" class="form-label">Foto</label>
@@ -52,33 +53,35 @@
                                 <select class="form-select" name="kelas_id[]" required>
                                     <option value="">Pilih Kelas</option>
                                     @foreach($kelas as $k)
-                                        <option value="{{ $k->id_kelas }}">
-                                            {{ $k->nama_kelas }} - {{ $k->mata_proyek }}
-                                        </option>
+                                        <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }} - {{ $k->mata_proyek }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <button type="button" class="btn btn-success mt-2" id="add-kelas-button">Tambah Kelas</button>
-                        
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" name="email" class="form-control" placeholder="Email" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password" required>
+                            <div class="input-group">
+                                <input type="password" name="password" class="form-control" placeholder="Password" required id="password-field">
+                                <button type="button" class="btn btn-outline-secondary" id="toggle-password">👁️</button>
+                            </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn" style="background-color: #0446b0; color: white; font-family: 'Arial', sans-serif;">Simpan</button>
+                        <button type="button" class="btn" style="background-color: #dbd9d9; font-family: 'Arial', sans-serif;" data-bs-toggle="collapse" data-bs-target="#formTambahAsisten" aria-expanded="false">Batal</button>
                     </form>
                 </div>
             </div>
         </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
+            <table class="table table-bordered table-striped" style="font-family: 'Arial', sans-serif;">
+                <thead class="table-dark" style="background-color: #0446b0; color: white;">
                     <tr>
                         <th>No</th>
                         <th>Foto</th>
@@ -95,7 +98,7 @@
                         <td>{{ $index + 1 }}</td>
                         <td>
                             @if($asisten->photo)
-                                <img src="{{ asset('uploads/photos/' . $asisten->photo) }}" alt="{{ $asisten->nama }}" width="100">
+                                <img src="{{ asset('uploads/photos/' . $asisten->photo) }}" alt="{{ $asisten->nama }}" style="width: 60px; height: 60px; object-fit: cover;">
                             @else
                                 <span>Tidak ada foto tersedia</span>
                             @endif
@@ -112,12 +115,16 @@
                                 @endforeach
                             @endif
                         </td>
-                        <td>
-                            <a href="{{ route('asistens.edit', $asisten->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('asistens.destroy', $asisten->id) }}" method="POST" style="display:inline;">
+                        <td class="border border-gray-300 px-4 py-2 text-center">
+                            <a href="{{ route('asistens.edit', $asisten->id) }}" class="text-blue-500 hover:text-blue-700">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{{ route('asistens.destroy', $asisten->id) }}" method="POST" class="inline-block" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus?');">Delete</button>
+                                <button type="submit" class="text-red-500 hover:text-red-700" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -127,6 +134,10 @@
         </div>
     </div>
 
+    <!-- Link ke Font Awesome untuk ikon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- JavaScript untuk Toggle Password -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -148,32 +159,34 @@
                     $('#nama').val('');
                 }
             });
-        });
 
-        document.getElementById('add-kelas-button').addEventListener('click', function() {
-            // Temukan container untuk input kelas
-            const kelasContainer = document.getElementById('kelas-container');
-            const newField = document.createElement('div'); // Buat elemen baru untuk input
-            newField.classList.add('mb-3');
-            newField.innerHTML = `
-                <label for="kelas_id[]" class="form-label">Kelas</label>
-                <select class="form-select" name="kelas_id[]" required>
-                    <option value="">Pilih Kelas</option>
-                    @foreach($kelas as $k)
-                        <option value="{{ $k->id_kelas }}">
-                            {{ $k->nama_kelas }} - {{ $k->mata_proyek }}
-                        </option>
-                    @endforeach
-                </select>
-                <button type="button" class="btn btn-danger btn-sm mt-2 remove-kelas-button">Hapus</button>
-            `;
+            $('#add-kelas-button').click(function() {
+                const kelasContainer = $('#kelas-container');
+                const newField = $(``
+                    <div class="mb-3">
+                        <label for="kelas_id[]" class="form-label">Kelas</label>
+                        <select class="form-select" name="kelas_id[]" required>
+                            <option value="">Pilih Kelas</option>
+                            @foreach($kelas as $k)
+                                <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }} - {{ $k->mata_proyek }}</option>
+                            @endforeach
+                        </select>
+                        <button type="button" class="btn btn-danger btn-sm mt-2 remove-kelas-button">Hapus</button>
+                    </div>
+                `);
 
-            // Tambahkan elemen baru ke dalam container
-            kelasContainer.appendChild(newField);
+                kelasContainer.append(newField);
 
-            // Tambahkan event listener untuk tombol hapus
-            newField.querySelector('.remove-kelas-button').addEventListener('click', function() {
-                newField.remove();
+                newField.find('.remove-kelas-button').click(function() {
+                    newField.remove();
+                });
+            });
+
+            // Toggle password visibility
+            $('#toggle-password').click(function() {
+                const passwordField = $('#password-field');
+                const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
+                passwordField.attr('type', type);
             });
         });
     </script>
