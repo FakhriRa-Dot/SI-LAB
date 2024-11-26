@@ -24,7 +24,7 @@ class HasilAbsensiAsistenController extends Controller
                 'npm' => $asisten->npm,
                 // Ambil nama_kelas dari koleksi kelas dan gabungkan dengan koma
                 'kelas' => $asisten->kelas->pluck('nama_kelas')->join(', ') ?: '-',
-                'foto' => $asisten->foto ?? null,
+                'foto' => optional($asisten->absensiAsisten->last())->foto ?? null,
                 'jumlah_hadir' => $totalHadir,
                 'presentase' => round($presentase, 2),
             ];
