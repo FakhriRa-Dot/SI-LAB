@@ -91,6 +91,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/asisten/nilai', [NilaiController::class, 'index'])->name('asisten.nilai');
         Route::post('/asisten/upload-nilai', [NilaiController::class, 'upload'])->name('upload.nilai');
+        Route::get('/asisten/nilai/{id}/edit', [NilaiController::class, 'edit'])->name('edit.nilai');
+        Route::put('/asisten/nilai/{id}', [NilaiController::class, 'update'])->name('update.nilai');
+        Route::delete('/asisten/nilai/{id}', [NilaiController::class, 'destroy'])->name('delete.nilai');
 
         // Arsip Praktikum
         Route::get('asisten/arsip-praktikum', [ArsipController::class, 'index'])->name('asisten.arsip');

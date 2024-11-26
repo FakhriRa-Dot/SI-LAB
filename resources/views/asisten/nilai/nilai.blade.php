@@ -7,6 +7,7 @@
         <h2>Nilai Mahasiswa</h2>
         <button id="showUploadForm" class="btn btn-dark mb-3">Upload</button>
 
+        <!-- Upload Form Section -->
         <div id="uploadForm" class="border p-4 mb-3" style="display: none;">
             <form id="formUpload" enctype="multipart/form-data" method="post" action="{{ route('upload.nilai') }}">
                 @csrf
@@ -57,11 +58,14 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" id="cancelUpload" class="btn btn-secondary">Batal</button>
-                <button type="submit" class="btn btn-dark">Upload</button>
+                <div class="d-flex justify-content-between">
+                    <button type="button" id="cancelUpload" class="btn btn-secondary">Batal</button>
+                    <button type="submit" class="btn btn-dark">Upload</button>
+                </div>
             </form>
         </div>
 
+        <!-- Data Table Section -->
         <table class="table table-bordered">
             <thead class="table-light">
                 <tr>
@@ -70,9 +74,9 @@
                     <th>Mata Kuliah</th>
                     <th>Kelas</th>
                     <th>Lampiran</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
-            
             <tbody>
                 @forelse ($nilaiMahasiswa as $nilai)
                     <tr>
@@ -80,28 +84,46 @@
                         <td>{{ $nilai->tanggal }}</td>
                         <td>{{ $nilai->mata_kuliah }}</td>
                         <td>{{ $nilai->kelas }}</td>
-                        <td><a href="{{ asset('storage/' . $nilai->lampiran) }}" target="_blank">Download</a></td>
+                        <td>
+                            <a href="{{ asset('storage/' . $nilai->lampiran) }}" target="_blank" class="btn btn-link">Download</a>
+                        </td>
+                        <td>
+                            <a href="{{ route('edit.nilai', $nilai->id) }}" class="btn btn-sm btn-warning">
+                                <i class="fa fa-edit"></i> Edit
+                            </a>
+                            <form action="{{ route('delete.nilai', $nilai->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i> Hapus
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center">No entry data</td>
+                        <td colspan="6" class="text-center">No entry data</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
 
+    <!-- Script for form visibility and file preview -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Show upload form when clicking 'Upload' button
             $('#showUploadForm').click(function() {
                 $('#uploadForm').show();
             });
 
+            // Hide upload form when clicking 'Batal'
             $('#cancelUpload').click(function() {
                 $('#uploadForm').hide();
             });
 
+            // Display selected file name in preview area
             $('#file').change(function(event) {
                 let file = event.target.files[0];
                 if (file) {
