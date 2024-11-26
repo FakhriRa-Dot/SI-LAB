@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\HasilAbsensiAsistenController;
 use App\Http\Controllers\Admin\JadwalPraktikumController;
 use App\Http\Controllers\Asisten\AbsensiAsistenController;
 use App\Http\Controllers\Asisten\AbsensiMahasiswaController;
+use App\Http\Controllers\Admin\AdminArsipController;
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\HasilAbsensiMahasiswaController;
@@ -67,6 +68,10 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/hasil-absensi/download-pdf', [HasilAbsensiMahasiswaController::class, 'downloadPDF'])->name('admin.hasil-absensi.download-pdf');
         // Route::get('/hasil-absensi/download-excel', [HasilAbsensiMahasiswaController::class, 'downloadExcel'])->name('admin.hasil-absensi.download-excel');
         Route::get('/admin/rekap-absensi', [HasilAbsensiAsistenController::class, 'index'])->name('admin.rekap');
+
+        // Halaman admin untuk melihat dan menghapus data
+        Route::get('admin/arsip-praktikum', [AdminArsipController::class, 'index'])->name('admin.arsip');
+        Route::delete('admin/arsip-praktikum/{id}', [AdminArsipController::class, 'destroy'])->name('admin.arsip.destroy');
     });
 
 
@@ -87,8 +92,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/asisten/nilai', [NilaiController::class, 'index'])->name('asisten.nilai');
         Route::post('/asisten/upload-nilai', [NilaiController::class, 'upload'])->name('upload.nilai');
 
+        // Arsip Praktikum
         Route::get('asisten/arsip-praktikum', [ArsipController::class, 'index'])->name('asisten.arsip');
         Route::post('/arsip/store', [ArsipController::class, 'store'])->name('arsip.store');
+        Route::get('/arsip/{id}/edit', [ArsipController::class, 'edit'])->name('arsip.edit');
+        Route::put('/arsip/{id}', [ArsipController::class, 'update'])->name('arsip.update');
+        Route::delete('/arsip/{id}', [ArsipController::class, 'destroy'])->name('arsip.destroy');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
