@@ -24,13 +24,12 @@
                       <td>{{ $rekap['npm'] }}</td>
                       <td>{{ $rekap['kelas'] }}</td>
                       <td>
-                        @if (!empty($rekap['foto']) && file_exists(public_path('storage/' . $rekap['foto'])))
-                            <img src="{{ asset('storage/' . $rekap['foto']) }}" alt="Foto Asisten" width="50" class="img-thumbnail">
-                        @else
-                            Tidak Ada Foto
-                        @endif
-                    </td>
-                    
+                          @if (!empty($rekap['foto']) && file_exists(public_path('storage/' . $rekap['foto'])))
+                              <img src="{{ asset('storage/' . $rekap['foto']) }}" alt="Foto Asisten" width="50" class="img-thumbnail">
+                          @else
+                              Tidak Ada Foto
+                          @endif
+                      </td>
                       <td>{{ $rekap['jumlah_hadir'] }}</td>
                       <td>{{ $rekap['presentase'] }}%</td>
                   </tr>
