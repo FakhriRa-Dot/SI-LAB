@@ -72,6 +72,9 @@ Route::middleware(['auth'])->group(function () {
         // Halaman admin untuk melihat dan menghapus data
         Route::get('admin/arsip-praktikum', [AdminArsipController::class, 'index'])->name('admin.arsip');
         Route::delete('admin/arsip-praktikum/{id}', [AdminArsipController::class, 'destroy'])->name('admin.arsip.destroy');
+
+        Route::get('/nilai', [App\Http\Controllers\Admin\NilaiController::class, 'index'])->name('admin.nilai');
+        Route::delete('/nilai/{id}', [App\Http\Controllers\Admin\NilaiController::class, 'destroy'])->name('admin.delete.nilai');
     });
 
 

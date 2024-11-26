@@ -79,6 +79,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.arsip') }}">Arsip Praktikum</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.nilai') }}">Arsip Nilai Praktikum</a>
+                    </li>
                 </ul>
                 <div class="logout-link">
                     <a class="nav-link text-danger" href="{{ route('logout') }}"
