@@ -11,6 +11,7 @@ use App\Http\Controllers\Asisten\NilaiController;
 
 use App\Http\Controllers\Admin\DataAsistenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
+use App\Http\Controllers\Admin\HasilAbsensiAsistenController;
 use App\Http\Controllers\Admin\JadwalPraktikumController;
 use App\Http\Controllers\Asisten\AbsensiAsistenController;
 use App\Http\Controllers\Asisten\AbsensiMahasiswaController;
@@ -65,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
 
         // Route::get('/hasil-absensi/download-pdf', [HasilAbsensiMahasiswaController::class, 'downloadPDF'])->name('admin.hasil-absensi.download-pdf');
         // Route::get('/hasil-absensi/download-excel', [HasilAbsensiMahasiswaController::class, 'downloadExcel'])->name('admin.hasil-absensi.download-excel');
+        Route::get('/admin/rekap-absensi', [HasilAbsensiAsistenController::class, 'index'])->name('admin.rekap');
     });
 
 

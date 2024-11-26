@@ -27,4 +27,9 @@ class Asisten extends Model
     {
         return $this->belongsToMany(JadwalPraktikum::class, 'jadwal_asistens', 'asisten_id', 'jadwal_id');
     }
+    public function absensiAsisten()
+{
+    return $this->hasMany(AbsensiAsisten::class, 'npm', 'npm');
+}
+
 }
