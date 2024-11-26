@@ -15,7 +15,8 @@ class AbsensiAsisten extends Model
         'npm', 
         'tanggal', 
         'id_kelas', 
-        'keterangan'
+        'keterangan',
+        'foto'
     ];
 
     public function asisten()
