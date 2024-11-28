@@ -162,7 +162,8 @@
 
             $('#add-kelas-button').click(function() {
                 const kelasContainer = $('#kelas-container');
-                const newField = $(``
+
+                const newField = $(`
                     <div class="mb-3">
                         <label for="kelas_id[]" class="form-label">Kelas</label>
                         <select class="form-select" name="kelas_id[]" required>
