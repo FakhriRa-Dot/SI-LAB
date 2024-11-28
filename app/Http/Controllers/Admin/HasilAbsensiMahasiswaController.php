@@ -13,20 +13,17 @@ use App\Models\Mahasiswa;
 
 class HasilAbsensiMahasiswaController extends Controller
 {
+
     public function index()
     {
         // Ambil data kelas yang dibagi berdasarkan semester dan mata proyek
         $proyekGanjil = Kelas::where('semester', 'Ganjil')->get()->groupBy('mata_proyek');
         $proyekGenap = Kelas::where('semester', 'Genap')->get()->groupBy('mata_proyek');
-        
-        // Debug untuk memastikan data proyekGanjil dan proyekGenap tersedia
-        
 
         // Kirim data kelas yang dibagi per semester ke view
         return view('admin.hasil-absensi.absensi_mahasiswa', compact('proyekGanjil', 'proyekGenap'));
     }
 
-    // Menampilkan rekap absensi mahasiswa berdasarkan id kelas
     public function rekapAbsensi($id_kelas)
     {
         // Ambil data kelas berdasarkan id_kelas
@@ -34,44 +31,44 @@ class HasilAbsensiMahasiswaController extends Controller
         
         // Ambil mahasiswa yang terdaftar di kelas tersebut
         $mahasiswas = Mahasiswa::whereHas('kelas', function ($query) use ($id_kelas) {
-            $query->where('kelas.id_kelas', $id_kelas); // Menyebutkan 'kelas.id_kelas' untuk menghindari ambiguitas
+            $query->where('kelas.id_kelas', $id_kelas);
         })->get();
 
         $rekapAbsensi = [];
+        $totalPertemuan = 8; // Asumsi total pertemuan adalah 8
+        $totalKehadiran = 0;
 
         // Proses absensi untuk setiap mahasiswa
         foreach ($mahasiswas as $mahasiswa) {
-            // Ambil absensi berdasarkan id_kelas dan npm mahasiswa
             $absensi = AbsensiMahasiswa::where('id_kelas', $id_kelas)
                 ->where('npm', $mahasiswa->npm)
                 ->get();
 
-            $pertemuan = [];
-            $hadirCount = 0;
+            $hadirCount = $absensi->where('keterangan', 'HADIR')->count();
 
-            // Proses status kehadiran untuk setiap pertemuan
-            for ($i = 1; $i <= 8; $i++) {
-                // Ambil status kehadiran untuk pertemuan ke-$i
-                $status = $absensi->where('pertemuan', $i)->first()->keterangan ?? '-';
-                $pertemuan[$i] = $status;
+            // Hitung total kehadiran
+            $totalKehadiran += $hadirCount;
 
-                // Hitung jumlah kehadiran
-                if ($status === 'HADIR') $hadirCount++;
-            }
-
-            // Tambahkan data rekap absensi mahasiswa ke array
+            // Tambahkan data rekap absensi mahasiswa
             $rekapAbsensi[] = [
                 'npm' => $mahasiswa->npm,
                 'nama' => $mahasiswa->nama,
-                'pertemuan' => $pertemuan,
-                'persentase_hadir' => round(($hadirCount / 8) * 100, 2), // Hitung persentase kehadiran
+                'kehadiran' => $hadirCount,
+                'totalPertemuan' => $totalPertemuan,
+                'persentase' => round(($hadirCount / $totalPertemuan) * 100, 2),
             ];
         }
 
-        // Kirim data kelas dan rekap absensi ke view
-        return view('admin.hasil-absensi.absensi_mahasiswa', compact('kelas', 'rekapAbsensi'));
+        // Kirim data ke view
+        return view('admin.hasil-absensi.hasil-absen-mahasiswa', [
+            'kelas' => $kelas,
+            'rekapAbsensi' => $rekapAbsensi,
+            'totalPertemuan' => $totalPertemuan,
+            'totalKehadiran' => $totalKehadiran,
+        ]);
     }
 }
+
 
     // public function downloadPDF()
     // {

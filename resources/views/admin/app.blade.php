@@ -67,11 +67,16 @@
                         <a class="nav-link" href="{{ route('jadwal-praktikum.index') }}">Jadwal Praktikum</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('jadwal-praktikum.index') }}">Jadwal Praktikum</a>
+                        <a class="nav-link" href="{{ route('admin.rekap') }}">Absensi Asisten</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.hasil-absensi.index') }}">Absensi Mahasiswa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.arsip') }}">Arsip Praktikum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.nilai') }}">Kumpulan Nilai</a>
                     </li>
                 </ul>
                 <div class="logout-link">
