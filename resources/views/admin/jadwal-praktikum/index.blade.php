@@ -3,28 +3,26 @@
 @section('title', 'Jadwal Praktikum')
 
 @section('content')
-<div class="container mt-4">
+<div class="container mt-4" style="display: flex; flex-direction: column;">
     <h1 class="text-center mb-4">Jadwal Praktikum</h1>
 
     <!-- Pesan Sukses -->
     @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+        <div class="alert alert-success shadow" style="width: 100%;">{{ session('success') }}</div>
     @endif
 
     <!-- Tombol Tambah Jadwal -->
-    <div class="mb-3">
-        <button class="btn" style="background-color: #21ded8;" onclick="toggleForm()">Tambah Jadwal</button>
+    <div style="margin-bottom: 10px; display: flex; justify-content: flex-start;">
+        <button class="btn shadow" style="background-color: #21ded8; color: white;" onclick="toggleForm()">Tambah Jadwal</button>
     </div>
 
     <!-- Form Tambah Jadwal -->
-    <div id="form-container" class="border p-4 rounded" style="display: none;">
+    <div id="form-container" class="border p-4 rounded shadow" style="display: none; border-radius: 10px;">
         <form action="{{ route('jadwal-praktikum.store') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="hari" class="form-label">Hari</label>
-                <select name="hari" class="form-select" required>
+                <select name="hari" class="form-select shadow" required>
                     <option value="">-- Pilih Hari --</option>
                     <option value="Senin">Senin</option>
                     <option value="Selasa">Selasa</option>
@@ -36,12 +34,12 @@
 
             <div class="mb-3">
                 <label for="jam" class="form-label">Jam</label>
-                <input type="time" name="jam" class="form-control" required>
+                <input type="time" name="jam" class="form-control shadow" required>
             </div>
 
             <div class="mb-3">
                 <label for="kelas_id" class="form-label">Kelas</label>
-                <select name="id_kelas" class="form-select" required>
+                <select name="id_kelas" class="form-select shadow" required>
                     <option value="">-- Pilih Kelas --</option>
                     @foreach ($kelas as $kls)
                         <option value="{{ $kls->id_kelas }}">{{ $kls->nama_kelas }} - {{ $kls->mata_proyek }}</option>
@@ -51,13 +49,13 @@
 
             <div class="mb-3">
                 <label for="ruangan" class="form-label">Ruangan</label>
-                <input type="text" name="ruangan" class="form-control" required>
+                <input type="text" name="ruangan" class="form-control shadow" required>
             </div>
 
             <!-- Pilih Asisten Dosen -->
             <div class="mb-4">
                 <label for="asdos-dropdown" class="form-label">Pilih Asisten Dosen</label>
-                <div class="input-group">
+                <div class="input-group shadow">
                     <select id="asdos-dropdown" class="form-select">
                         <option value="">-- Pilih Asisten Dosen --</option>
                         @foreach ($asistens as $as)
@@ -72,58 +70,60 @@
             <div id="asdos-list" class="mb-4"></div>
 
             <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-secondary me-2" onclick="toggleForm()">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn shadow me-2" style="background-color: #dbd9d9;" onclick="toggleForm()">Batal</button>
+                <button type="submit" class="btn shadow" style="background-color: #6a0dad; color: white;">Simpan</button>
             </div>
         </form>
     </div>
 
     <!-- Tabel Daftar Jadwal -->
-    <table class="table table-bordered mt-4">
-        <thead class="table-primary">
-            <tr>
-                <th style="background-color: #0446b0" >Hari</th>
-                <th style="background-color: #0446b0" >Jam</th>
-                <th style="background-color: #0446b0" >Kelas</th>
-                <th style="background-color: #0446b0" >Ruangan</th>
-                <th style="background-color: #0446b0" >Asisten Dosen</th>
-                <th style="background-color: #0446b0" >Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if ($jadwals->isEmpty())
+    <div class="table-responsive shadow" style="width: 100%; border-radius: 10px; margin-top: 20px;">
+        <table class="table table-bordered">
+            <thead class="table-primary">
                 <tr>
-                    <td colspan="6" class="text-center text-muted">Tidak ada data jadwal praktikum</td>
+                    <th style="background-color: #0446b0; color: white;">Hari</th>
+                    <th style="background-color: #0446b0; color: white;">Jam</th>
+                    <th style="background-color: #0446b0; color: white;">Kelas</th>
+                    <th style="background-color: #0446b0; color: white;">Ruangan</th>
+                    <th style="background-color: #0446b0; color: white;">Asisten Dosen</th>
+                    <th style="background-color: #0446b0; color: white;">Aksi</th>
                 </tr>
-            @else
-                @foreach ($jadwals as $jadwal)
+            </thead>
+            <tbody>
+                @if ($jadwals->isEmpty())
                     <tr>
-                        <td>{{ $jadwal->hari }}</td>
-                        <td>{{ $jadwal->jam }}</td>
-                        <td>{{ $jadwal->kelas->nama_kelas ?? '-' }}</td>
-                        <td>{{ $jadwal->ruangan }}</td>
-                        <td>
-                            @foreach ($jadwal->asistens as $as)
-                                {{ $as->nama }}<br>
-                            @endforeach
-                        </td>
-                        <td>
-                            <a href="{{ route('jadwal-praktikum.edit', $jadwal->id) }}" class="btn btn-warning btn-sm">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
-                            <form action="{{ route('jadwal-praktikum.destroy', $jadwal->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?');">
-                                    <i class="fas fa-trash"></i> Hapus
-                                </button>
-                            </form>
-                        </td>
+                        <td colspan="6" class="text-center text-muted">Tidak ada data jadwal praktikum</td>
                     </tr>
-                @endforeach
-            @endif
-        </tbody>
-    </table>
+                @else
+                    @foreach ($jadwals as $jadwal)
+                        <tr>
+                            <td>{{ $jadwal->hari }}</td>
+                            <td>{{ $jadwal->jam }}</td>
+                            <td>{{ $jadwal->kelas->nama_kelas ?? '-' }}</td>
+                            <td>{{ $jadwal->ruangan }}</td>
+                            <td>
+                                @foreach ($jadwal->asistens as $as)
+                                    <span class="badge bg-primary shadow">{{ $as->nama }}</span><br>
+                                @endforeach
+                            </td>
+                            <td>
+                                <a href="{{ route('jadwal-praktikum.edit', $jadwal->id) }}" class="btn btn-warning btn-sm shadow">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <form action="{{ route('jadwal-praktikum.destroy', $jadwal->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm shadow" onclick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?');">
+                                        <i class="fas fa-trash"></i> Hapus
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script>
@@ -151,7 +151,7 @@
 
         const newItem = document.createElement("div");
         newItem.id = "asdos-item-" + selectedValue;
-        newItem.className = "d-flex justify-content-between align-items-center p-2 border rounded mb-2";
+        newItem.className = "d-flex justify-content-between align-items-center p-2 border rounded shadow mb-2";
         newItem.innerHTML = `
             <span>${selectedText}</span>
             <input type="hidden" name="asdos_ids[]" value="${selectedValue}">

@@ -8,14 +8,14 @@
         <button id="showUploadForm" class="btn btn-dark mb-3">Upload</button>
 
         <!-- Upload Form Section -->
-        <div id="uploadForm" class="border p-4 mb-3" style="display: none;">
+        <div id="uploadForm" class="border p-4 mb-3" style="display: none; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <form id="formUpload" enctype="multipart/form-data" method="post" action="{{ route('upload.nilai') }}">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="semester" class="form-label">Semester</label>
-                            <select id="semester" name="semester" class="form-select">
+                            <select id="semester" name="semester" class="form-select" style="border-radius: 10px;">
                                 <option selected disabled>Pilih Semester</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="mata_kuliah" class="form-label">Mata Kuliah</label>
-                            <select id="mata_kuliah" name="mata_kuliah" class="form-select">
+                            <select id="mata_kuliah" name="mata_kuliah" class="form-select" style="border-radius: 10px;">
                                 <option selected disabled>Pilih Mata Kuliah</option>
                                 @foreach ($kelas as $kls)
                                     <option value="{{ $kls->mata_proyek }}">{{ $kls->mata_proyek }}</option>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="kelas" class="form-label">Kelas</label>
-                            <select id="kelas" name="kelas" class="form-select">
+                            <select id="kelas" name="kelas" class="form-select" style="border-radius: 10px;">
                                 <option selected disabled>Pilih Kelas</option>
                                 @foreach ($kelas as $kls)
                                     <option value="{{ $kls->nama_kelas }}">{{ $kls->nama_kelas }}</option>
@@ -44,69 +44,71 @@
                         </div>
                         <div class="mb-3">
                             <label for="tanggal" class="form-label">Tanggal</label>
-                            <input type="text" id="tanggal" name="tanggal" class="form-control" placeholder="DD/MM/YY" value="{{ now()->format('d/m/Y') }}" readonly>
+                            <input type="text" id="tanggal" name="tanggal" class="form-control" placeholder="DD/MM/YY" value="{{ now()->format('d/m/Y') }}" readonly style="border-radius: 10px;">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="file" class="form-label">Lampiran</label>
-                            <input type="file" id="file" name="file" class="form-control" accept=".xls, .xlsx">
+                            <input type="file" id="file" name="file" class="form-control" accept=".xls, .xlsx" style="border-radius: 10px;">
                             <small class="form-text text-muted">*file maks. 4MB</small>
                         </div>
-                        <div id="filePreview" class="border p-2 text-center" style="height: 200px; overflow: auto;">
+                        <div id="filePreview" class="border p-2 text-center" style="height: 200px; overflow: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                             <span class="text-muted">PREVIEW FILE</span>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <button type="button" id="cancelUpload" class="btn btn-secondary">Batal</button>
-                    <button type="submit" class="btn btn-dark">Upload</button>
+                <div class="d-flex justify-content-between mt-3">
+                    <button type="button" id="cancelUpload" class="btn btn-secondary" style="border-radius: 10px;">Batal</button>
+                    <button type="submit" class="btn btn-dark" style="border-radius: 10px;">Upload</button>
                 </div>
             </form>
         </div>
 
         <!-- Data Table Section -->
-        <table class="table table-bordered">
-            <thead class="table-light">
-                <tr>
-                    <th style="background-color: #0446b0">No</th>
-                    <th style="background-color: #0446b0">Tanggal</th>
-                    <th style="background-color: #0446b0">Mata Kuliah</th>
-                    <th style="background-color: #0446b0">Kelas</th>
-                    <th style="background-color: #0446b0">Lampiran</th>
-                    <th style="background-color: #0446b0">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($nilaiMahasiswa as $nilai)
+        <div class="table-responsive" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
+            <table class="table table-bordered">
+                <thead class="table-light">
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $nilai->tanggal }}</td>
-                        <td>{{ $nilai->mata_kuliah }}</td>
-                        <td>{{ $nilai->kelas }}</td>
-                        <td>
-                            <a href="{{ asset('storage/' . $nilai->lampiran) }}" target="_blank" class="btn btn-link">Download</a>
-                        </td>
-                        <td>
-                            <a href="{{ route('edit.nilai', $nilai->id) }}" class="btn btn-sm btn-warning">
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
-                            <form action="{{ route('delete.nilai', $nilai->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="fa fa-trash"></i> Hapus
-                                </button>
-                            </form>
-                        </td>
+                        <th style="background-color: #0446b0; color: white;">No</th>
+                        <th style="background-color: #0446b0; color: white;">Tanggal</th>
+                        <th style="background-color: #0446b0; color: white;">Mata Kuliah</th>
+                        <th style="background-color: #0446b0; color: white;">Kelas</th>
+                        <th style="background-color: #0446b0; color: white;">Lampiran</th>
+                        <th style="background-color: #0446b0; color: white;">Aksi</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="6" class="text-center">No entry data</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @forelse ($nilaiMahasiswa as $nilai)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $nilai->tanggal }}</td>
+                            <td>{{ $nilai->mata_kuliah }}</td>
+                            <td>{{ $nilai->kelas }}</td>
+                            <td>
+                                <a href="{{ asset('storage/' . $nilai->lampiran) }}" target="_blank" class="btn btn-link">Download</a>
+                            </td>
+                            <td>
+                                <a href="{{ route('edit.nilai', $nilai->id) }}" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <form action="{{ route('delete.nilai', $nilai->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash"></i> Hapus
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">No entry data</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Script for form visibility and file preview -->

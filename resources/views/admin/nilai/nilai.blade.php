@@ -13,15 +13,15 @@
         @endif
 
         <!-- Data Table Section -->
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="border-radius: 10px; overflow: hidden;">
             <thead class="table-light">
                 <tr>
-                    <th style="background-color: #0446b0">No</th>
-                    <th style="background-color: #0446b0">Tanggal</th>
-                    <th style="background-color: #0446b0">Mata Kuliah</th>
-                    <th style="background-color: #0446b0">Kelas</th>
-                    <th style="background-color: #0446b0">Lampiran</th>
-                    <th style="background-color: #0446b0">Aksi</th>
+                    <th style="background-color: #0446b0; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">No</th>
+                    <th style="background-color: #0446b0;">Tanggal</th>
+                    <th style="background-color: #0446b0;">Mata Kuliah</th>
+                    <th style="background-color: #0446b0;">Kelas</th>
+                    <th style="background-color: #0446b0;">Lampiran</th>
+                    <th style="background-color: #0446b0; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">Aksi</th>
                 </tr>
             </thead>
             <tbody>

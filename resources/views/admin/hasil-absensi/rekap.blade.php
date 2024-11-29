@@ -3,83 +3,42 @@
 @section('content')
   <div class="container mt-4">
     <h1 class="text-center mb-4">Rekap Absensi Asisten</h1>
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-hover">
-          <thead class="thead-dark">
-              <tr>
-                  <th style="background-color: #0446b0">No</th>
-                  <th style="background-color: #0446b0">Nama</th>
-                  <th style="background-color: #0446b0">NPM</th>
-                  <th style="background-color: #0446b0">Kelas</th>
-                  <th style="background-color: #0446b0">Foto</th>
-                  <th style="background-color: #0446b0">Jumlah Hadir</th>
-                  <th style="background-color: #0446b0">Presentase (%)</th>
-              </tr>
-          </thead>
-          <tbody>
-              @foreach ($rekapAbsensi as $index => $rekap)
-                  <tr>
-                      <td>{{ $index + 1 }}</td>
-                      <td>{{ $rekap['nama'] }}</td>
-                      <td>{{ $rekap['npm'] }}</td>
-                      <td>{{ $rekap['kelas'] }}</td>
-                      <td>
-                          @if (!empty($rekap['foto']) && file_exists(public_path('storage/' . $rekap['foto'])))
-                              <img src="{{ asset('storage/' . $rekap['foto']) }}" alt="Foto Asisten" width="50" class="img-thumbnail">
-                          @else
-                              Tidak Ada Foto
-                          @endif
-                      </td>
-                      <td>{{ $rekap['jumlah_hadir'] }}</td>
-                      <td>{{ $rekap['presentase'] }}%</td>
-                  </tr>
-              @endforeach
-          </tbody>
-      </table>
+    <!-- Tabel Rekap Absensi Asisten -->
+    <div class="table-responsive shadow" style="width: 100%; border-radius: 10px;">
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th style="background-color: #0446b0; color: white;">No</th>
+                    <th style="background-color: #0446b0; color: white;">Nama</th>
+                    <th style="background-color: #0446b0; color: white;">NPM</th>
+                    <th style="background-color: #0446b0; color: white;">Kelas</th>
+                    <th style="background-color: #0446b0; color: white;">Foto</th>
+                    <th style="background-color: #0446b0; color: white;">Jumlah Hadir</th>
+                    <th style="background-color: #0446b0; color: white;">Presentase (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($rekapAbsensi as $index => $rekap)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $rekap['nama'] }}</td>
+                        <td>{{ $rekap['npm'] }}</td>
+                        <td>{{ $rekap['kelas'] }}</td>
+                        <td>
+                            @if (!empty($rekap['foto']) && file_exists(public_path('storage/' . $rekap['foto'])))
+                                <img src="{{ asset('storage/' . $rekap['foto']) }}" alt="Foto Asisten" width="50" class="img-thumbnail shadow-sm">
+                            @else
+                                <span class="text-muted">Tidak Ada Foto</span>
+                            @endif
+                        </td>
+                        <td>{{ $rekap['jumlah_hadir'] }}</td>
+                        <td class="text-success">{{ $rekap['presentase'] }}%</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>
 @endsection
 
-@push('styles')
-  <style>
-    .container {
-        margin-top: 20px;
-    }
 
-    h1 {
-        font-size: 2rem;
-        font-weight: 600;
-    }
-
-    .table {
-        width: 100%;
-        margin-top: 20px;
-        border-collapse: separate;
-        border-spacing: 0 8px;
-    }
-
-    .table th, .table td {
-        padding: 12px;
-        text-align: center;
-    }
-
-    .table th {
-        background-color: #343a40;
-        color: white;
-        font-size: 1.1rem;
-    }
-
-    .table td {
-        background-color: #f8f9fa;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: #e9ecef;
-    }
-
-    .img-thumbnail {
-        border-radius: 50%;
-        object-fit: cover;
-    }
-  </style>
-@endpush

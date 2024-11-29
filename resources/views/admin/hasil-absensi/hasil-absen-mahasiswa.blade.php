@@ -4,16 +4,17 @@
 <div class="container mt-4">
     <h3>Hasil Absensi Mahasiswa - {{ $kelas->nama_kelas }}</h3>
 
-    <div class="table-responsive mt-3">
-        <table class="table table-bordered">
-            <thead>
+    <!-- Tabel Hasil Absensi -->
+    <div class="table-responsive shadow" style="width: 100%; border-radius: 10px;">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
                 <tr>
-                    <th style="background-color: #0446b0">No</th>
-                    <th style="background-color: #0446b0">NPM</th>
-                    <th style="background-color: #0446b0">Nama Mahasiswa</th>
-                    <th style="background-color: #0446b0">Jumlah Kehadiran</th>
-                    <th style="background-color: #0446b0">Total Pertemuan</th>
-                    <th style="background-color: #0446b0">Presentase Kehadiran</th>
+                    <th style="background-color: #0446b0; color: white;">No</th>
+                    <th style="background-color: #0446b0; color: white;">NPM</th>
+                    <th style="background-color: #0446b0; color: white;">Nama Mahasiswa</th>
+                    <th style="background-color: #0446b0; color: white;">Jumlah Kehadiran</th>
+                    <th style="background-color: #0446b0; color: white;">Total Pertemuan</th>
+                    <th style="background-color: #0446b0; color: white;">Presentase Kehadiran</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,9 +32,15 @@
         </table>
     </div>
 
-    <div class="mt-3">
-        <h5>Total Kehadiran: {{ $totalKehadiran }} / {{ $totalPertemuan * count($rekapAbsensi) }}</h5>
-        <h5>Presentase Kehadiran: {{ number_format(($totalKehadiran / ($totalPertemuan * count($rekapAbsensi))) * 100, 2) }}%</h5>
+    <!-- Total Kehadiran -->
+    <div class="mt-4 shadow p-3 rounded" style="background-color: #f7f7f7; border-radius: 10px;">
+        <h5>Total Kehadiran: 
+            <span class="text-primary">{{ $totalKehadiran }}</span> / 
+            <span class="text-secondary">{{ $totalPertemuan * count($rekapAbsensi) }}</span>
+        </h5>
+        <h5>Presentase Kehadiran: 
+            <span class="text-success">{{ number_format(($totalKehadiran / ($totalPertemuan * count($rekapAbsensi))) * 100, 2) }}%</span>
+        </h5>
     </div>
 </div>
 @endsection

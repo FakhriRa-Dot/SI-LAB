@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Asisten</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-5">
-        <h2>Edit Asisten</h2>
+@extends('admin.app')
+
+@section('title', 'Edit Mahasiswa')
+
+@section('content')
+<div class="container mt-5 d-flex justify-content-center">
+    <div style="width: 100%; max-width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; padding: 30px; background-color: #ffffff;">
+        <h2 class="text-center mb-4">Edit Asisten</h2>
 
         <!-- Display success message if available -->
         @if (session('success'))
@@ -53,11 +50,12 @@
                 <input type="password" name="password" class="form-control" placeholder="Password">
             </div>
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmUpdateModal">
-                Update
-            </button>
-
-            <a href="{{ route('data.asistens.index') }}" class="btn btn-secondary">Kembali</a>
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <a href="{{ route('data.asistens.index') }}" class="btn btn-secondary">Kembali</a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmUpdateModal">
+                    Update
+                </button>
+            </div>
 
             <!-- Modal for confirmation -->
             <div class="modal fade" id="confirmUpdateModal" tabindex="-1" aria-labelledby="confirmUpdateModalLabel" aria-hidden="true">
@@ -79,7 +77,7 @@
             </div>
         </form>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+@endsection

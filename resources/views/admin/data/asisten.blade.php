@@ -3,15 +3,15 @@
 @section('title', 'Data Asisten')
 
 @section('content')
-    <div class="container mt-3">
+    <div class="container mt-3" style="display: flex; flex-direction: column;">
         <h1 class="mb-4">Data Asisten</h1>
 
         @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="alert alert-success shadow" style="width: 100%;">{{ session('success') }}</div>
         @endif
 
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert alert-danger shadow" style="width: 100%;">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -21,14 +21,15 @@
         @endif
 
         <!-- Button Tambah Asisten -->
-        <button class="btn" style="background-color: #21ded8; color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#formTambahAsisten" aria-expanded="false" aria-controls="formTambahAsisten">
-            Tambah
-        </button>
-        <br><br>
+        <div style="margin-bottom: 10px; display: flex; justify-content: flex-start;">
+            <button class="btn shadow" style="background-color: #21ded8; color: white;" type="button" data-bs-toggle="collapse" data-bs-target="#formTambahAsisten" aria-expanded="false" aria-controls="formTambahAsisten">
+                Tambah
+            </button>
+        </div>
 
         <!-- Form Tambah Asisten -->
-        <div class="collapse" id="formTambahAsisten">
-            <div class="card mb-4">
+        <div class="collapse" id="formTambahAsisten" style="width: 100%;">
+            <div class="card mb-3 shadow" style="border-radius: 10px;">
                 <div class="card-body">
                     <h5 class="card-title">Form Tambah Asisten</h5>
                     <form action="{{ route('data.asistens.store') }}" method="POST" enctype="multipart/form-data">
@@ -37,7 +38,7 @@
                         <!-- NPM -->
                         <div class="mb-3">
                             <label for="npm" class="form-label">NPM</label>
-                            <select name="npm" class="form-select" id="npm" required>
+                            <select name="npm" class="form-select shadow" id="npm" required>
                                 <option value="">Pilih Mahasiswa</option>
                                 @foreach ($mahasiswa as $mhs)
                                     <option value="{{ $mhs->npm }}">{{ $mhs->npm }}</option>
@@ -48,25 +49,25 @@
                         <!-- Nama -->
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
-                            <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Asisten" required>
+                            <input type="text" name="nama" class="form-control shadow" id="nama" placeholder="Nama Asisten" required>
                         </div>
 
                         <!-- Foto -->
                         <div class="mb-3">
                             <label for="photo" class="form-label">Foto</label>
-                            <input type="file" name="photo" class="form-control" id="photo" accept="image/*">
+                            <input type="file" name="photo" class="form-control shadow" id="photo" accept="image/*">
                         </div>
 
                         <!-- Email -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                            <input type="email" name="email" class="form-control shadow" placeholder="Email" required>
                         </div>
 
                         <!-- Password -->
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <div class="input-group">
+                            <div class="input-group shadow">
                                 <input type="password" name="password" class="form-control" placeholder="Password" required id="password-field">
                                 <button type="button" class="btn btn-outline-secondary" id="toggle-password">👁️</button>
                             </div>
@@ -76,7 +77,7 @@
                         <div id="kelas-container">
                             <div class="mb-3">
                                 <label for="kelas_id[]" class="form-label">Kelas</label>
-                                <select class="form-select" name="kelas_id[]" required>
+                                <select class="form-select shadow" name="kelas_id[]" required>
                                     <option value="">Pilih Kelas</option>
                                     @foreach($kelas as $k)
                                         <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }} - {{ $k->mata_proyek }}</option>
@@ -86,28 +87,28 @@
                         </div>
 
                         <!-- Tombol Tambah Kelas -->
-                        <button type="button" class="btn btn-success mt-2" id="add-kelas-button">Tambah Kelas</button>
+                        <button type="button" class="btn btn-success mt-2 shadow" id="add-kelas-button">Tambah Kelas</button>
 
                         <!-- Tombol Simpan & Batal -->
-                        <button type="submit" class="btn" style="background-color: #6a0dad; color: white; font-family: 'Arial', sans-serif;">Simpan</button>
-                        <button type="button" class="btn" style="background-color: #dbd9d9; font-family: 'Arial', sans-serif;" data-bs-toggle="collapse" data-bs-target="#formTambahAsisten" aria-expanded="false">Batal</button>
+                        <button type="submit" class="btn shadow" style="background-color: #6a0dad; color: white;">Simpan</button>
+                        <button type="button" class="btn shadow" style="background-color: #dbd9d9;" data-bs-toggle="collapse" data-bs-target="#formTambahAsisten" aria-expanded="false">Batal</button>
                     </form>
                 </div>
             </div>
         </div>
 
         <!-- Table Data Asisten -->
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped" style="font-family: 'Arial', sans-serif;">
+        <div class="table-responsive shadow" style="width: 100%; border-radius: 10px;">
+            <table class="table table-bordered table-striped">
                 <thead class="table-dark" style="background-color: #0446b0; color: white;">
                     <tr>
-                        <th>No</th>
-                        <th>Foto</th>
-                        <th>NPM</th>
-                        <th>Nama Lengkap</th>
-                        <th>No. HP</th>
-                        <th>Kelas</th>
-                        <th>Ket</th>
+                        <th style="background-color: #0446b0;">No</th>
+                        <th style="background-color: #0446b0;">Foto</th>
+                        <th style="background-color: #0446b0;">NPM</th>
+                        <th style="background-color: #0446b0;">Nama Lengkap</th>
+                        <th style="background-color: #0446b0;">No. HP</th>
+                        <th style="background-color: #0446b0;">Kelas</th>
+                        <th style="background-color: #0446b0;">Ket</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,25 +127,21 @@
                         <td>{{ $asisten->mahasiswa->no_hp }}</td>
                         <td>
                             @foreach($asisten->kelas as $k)
-                                <span class="badge bg-primary">{{ $k->nama_kelas }} ({{ $k->mata_proyek }})</span>
+                                <span class="badge bg-primary shadow">{{ $k->nama_kelas }} ({{ $k->mata_proyek }})</span>
                             @endforeach
                         </td>
                         <td class="text-center">
-                            <!-- Edit Button with Icon -->
-                            <a href="{{ route('asistens.edit', $asisten->id) }}" class="btn btn-warning btn-sm text-dark" style="font-size: 14px; display: inline-flex; align-items: center;">
-                                <i class="fas fa-edit" style="color: rgb(25, 24, 24);"></i> Edit
+                            <a href="{{ route('asistens.edit', $asisten->id) }}" class="btn btn-warning btn-sm shadow">
+                                <i class="fas fa-edit"></i> Edit
                             </a>
-                            
-                            <!-- Delete Button -->
-                            <form action="{{ route('asistens.destroy', $asisten->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('asistens.destroy', $asisten->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                <button type="submit" class="btn btn-danger btn-sm shadow" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                     <i class="fas fa-trash"></i> Hapus
                                 </button>
                             </form>
                         </td>
-                        
                     </tr>
                 @endforeach
                 </tbody>
@@ -152,13 +149,8 @@
         </div>
     </div>
 
-    <!-- Link ke Font Awesome untuk ikon -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-    <!-- JavaScript untuk Toggle Password -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Script -->
     <script>
-        // Mengambil data kelas dari variabel PHP dan mengubahnya menjadi JSON di JavaScript
         const kelasData = @json($kelas);
 
         document.getElementById('add-kelas-button').addEventListener('click', function() {
@@ -167,7 +159,7 @@
             newField.classList.add('mb-3');
             newField.innerHTML = `
                 <label for="kelas_id[]" class="form-label">Kelas</label>
-                <select class="form-select" name="kelas_id[]" required>
+                <select class="form-select shadow" name="kelas_id[]" required>
                     <option value="">Pilih Kelas</option>
                     ${kelasData.map(kelas => `
                         <option value="${kelas.id_kelas}">
@@ -175,7 +167,7 @@
                         </option>
                     `).join('')}
                 </select>
-                <button type="button" class="btn btn-danger btn-sm mt-2 remove-kelas-button">Hapus</button>
+                <button type="button" class="btn btn-danger btn-sm mt-2 shadow remove-kelas-button">Hapus</button>
             `;
             kelasContainer.appendChild(newField);
 
@@ -184,7 +176,6 @@
             });
         });
 
-        // Toggle password visibility
         $('#toggle-password').click(function() {
             const passwordField = $('#password-field');
             const type = passwordField.attr('type') === 'password' ? 'text' : 'password';

@@ -6,7 +6,8 @@
     <div class="container">
         <h1 class="mb-5">Absensi Mahasiswa</h1>
 
-        <ul class="nav nav-tabs">
+        <!-- Nav Tabs -->
+        <ul class="nav nav-tabs d-flex justify-content-start mb-4" style="gap: 10px;">
             <li class="nav-item">
                 <a class="nav-link active tab-layout" data-bs-toggle="tab" href="#ganjil" role="tab">Ganjil</a>
             </li>
@@ -15,16 +16,19 @@
             </li>
         </ul>
 
-        <div class="tab-content mt-3">
+        <!-- Tab Content -->
+        <div class="tab-content">
 
+            <!-- Ganjil Tab -->
             <div id="ganjil" class="tab-pane fade show active">
                 @foreach ($proyekGanjil as $namaProyek => $proyekItems)
-                    <div class="list-group">
+                    <div class="list-group mb-3">
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-white shadow-lg p-3 rounded flex-column flex-md-row gap-4">
+                            <span class="fw-bold">{{ $namaProyek }}</span>
 
-                        <div class="list-group-item bg-items">
-                            {{ $namaProyek }}
-                            <div class="dropdown float-end">
-                                <button class="btn btn-layout dropdown-toggle" type="button" id="dropdownMenuButton{{ $namaProyek }}" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- Dropdown Button -->
+                            <div class="dropdown">
+                                <button class="btn btn-layout dropdown-toggle shadow-sm" type="button" id="dropdownMenuButton{{ $namaProyek }}" data-bs-toggle="dropdown" aria-expanded="false">
                                     Kelas
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $namaProyek }}">
@@ -42,14 +46,16 @@
                 @endforeach
             </div>
 
+            <!-- Genap Tab -->
             <div id="genap" class="tab-pane fade">
                 @foreach ($proyekGenap as $namaProyek => $proyekItems)
-                    <div class="list-group">
+                    <div class="list-group mb-3">
+                        <div class="list-group-item d-flex justify-content-between align-items-center bg-white shadow-lg p-3 rounded flex-column flex-md-row gap-4">
+                            <span class="fw-bold">{{ $namaProyek }}</span>
 
-                        <div class="list-group-item bg-items">
-                            {{ $namaProyek }}
-                            <div class="dropdown float-end">
-                                <button class="btn btn-layout dropdown-toggle" type="button" id="dropdownMenuButton{{ $namaProyek }}" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- Dropdown Button -->
+                            <div class="dropdown">
+                                <button class="btn btn-layout dropdown-toggle shadow-sm" type="button" id="dropdownMenuButton{{ $namaProyek }}" data-bs-toggle="dropdown" aria-expanded="false">
                                     Kelas
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ $namaProyek }}">
