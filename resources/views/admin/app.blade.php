@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,16 +11,20 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Itim&family=Lato:wght@400;700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    {{-- <link rel="preconnect" href="https://fonts.googleapis.com"> --}}
+    {{-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Itim&family=Lato:wght@400;700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ asset('vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}"> --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('js/select.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vertical-layout-light/style.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
+    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 
 
     <!-- Style Kustom -->
@@ -52,15 +57,16 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container-scroller">
         <!-- Navbar dan Sidebar -->
-        @include('partials.navbar')  <!-- Pastikan navbar di-include dengan benar -->
-        
+        @include('partials.navbar') <!-- Pastikan navbar di-include dengan benar -->
+
         <div class="container-fluid page-body-wrapper">
             <!-- Sidebar -->
             @include('partials.sidebar') <!-- Pastikan sidebar di-include dengan benar -->
-            
+
             <div class="main-content flex-grow-1">
                 @yield('content') <!-- Isi konten utama halaman -->
             </div>
@@ -76,4 +82,5 @@
     @stack('scripts')
     @yield('scripts')
 </body>
+
 </html>

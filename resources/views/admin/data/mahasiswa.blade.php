@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-3">
     <h1>Data Mahasiswa</h1>
-    
+
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @elseif(session('error'))
@@ -80,9 +80,22 @@
                         @endforeach
                     </td>
                     <td>
-                        <!-- Tambahkan aksi edit/hapus sesuai kebutuhan -->
+                        <!-- Tombol Edit -->
+                        <a href="{{ route('data.mahasiswas.edit', $mhs->npm) }}" class="btn btn-warning btn-sm">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+
+                        <!-- Tombol Hapus -->
+                        <form action="{{ route('data.mahasiswas.destroy', $mhs->npm) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus mahasiswa ini?')">
+                                <i class="bi bi-trash"></i> Hapus
+                            </button>
+                        </form>
                     </td>
-                </tr> @endforeach
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -116,4 +129,5 @@
         });
     });
 </script>
+
 @endsection

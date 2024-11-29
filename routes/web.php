@@ -50,10 +50,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('asistens/{id}/edit', [DataAsistenController::class, 'edit'])->name('asistens.edit');
         Route::put('asistens/{id}', [DataAsistenController::class, 'update'])->name('asistens.update');
         Route::delete('asistens/{id}', [DataAsistenController::class, 'destroy'])->name('asistens.destroy');
-
+      
         Route::get('/mahasiswas', [DataMahasiswaController::class, 'index'])->name('data.mahasiswas.index');
-        Route::post('/mahasiswas/store', [DataMahasiswaController::class, 'store'])->name('data.mahasiswas.store');
-
+        Route::post('/mahasiswas', [DataMahasiswaController::class, 'store'])->name('data.mahasiswas.store');
+        Route::get('/mahasiswas/{id}/edit', [DataMahasiswaController::class, 'edit'])->name('data.mahasiswas.edit');
+        Route::put('/mahasiswas/{id}', [DataMahasiswaController::class, 'update'])->name('data.mahasiswas.update');
+        Route::delete('/mahasiswas/{id}', [DataMahasiswaController::class, 'destroy'])->name('data.mahasiswas.destroy');
+        
         Route::get('/jadwal-praktikum', [JadwalPraktikumController::class, 'index'])->name('jadwal-praktikum.index');
         Route::get('/jadwal-praktikum/create', [JadwalPraktikumController::class, 'create'])->name('jadwal-praktikum.create');
         Route::post('/jadwal-praktikum/store', [JadwalPraktikumController::class, 'store'])->name('jadwal-praktikum.store');
