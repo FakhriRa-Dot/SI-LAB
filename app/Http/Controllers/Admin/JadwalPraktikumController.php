@@ -26,14 +26,19 @@ class JadwalPraktikumController extends Controller
             'jam' => 'required',
             'ruangan' => 'required|string',
             'id_kelas' => 'required|exists:kelas,id_kelas',
-            'asdos_ids' => 'required|array',
+            'asdos_ids' => 'required|array|min:1', // pastikan ada setidaknya 1 asdos
+            'asdos_ids.*' => 'exists:asistens,id', // validasi setiap ID asdos
         ]);
-
+    
+        // Membuat Jadwal Praktikum
         $jadwal = JadwalPraktikum::create($request->only(['hari', 'jam', 'ruangan', 'id_kelas']));
+    
+        // Menambahkan relasi dengan asisten dosen
         $jadwal->asistens()->attach($request->asdos_ids);
-
+    
         return redirect()->route('jadwal-praktikum.index')->with('success', 'Jadwal berhasil ditambahkan.');
     }
+    
     
     public function edit($id)
     {

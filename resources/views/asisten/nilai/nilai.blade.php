@@ -69,12 +69,12 @@
         <table class="table table-bordered">
             <thead class="table-light">
                 <tr>
-                    <th>No</th>
-                    <th>Tanggal</th>
-                    <th>Mata Kuliah</th>
-                    <th>Kelas</th>
-                    <th>Lampiran</th>
-                    <th>Aksi</th>
+                    <th style="background-color: #0446b0">No</th>
+                    <th style="background-color: #0446b0">Tanggal</th>
+                    <th style="background-color: #0446b0">Mata Kuliah</th>
+                    <th style="background-color: #0446b0">Kelas</th>
+                    <th style="background-color: #0446b0">Lampiran</th>
+                    <th style="background-color: #0446b0">Aksi</th>
                 </tr>
             </thead>
             <tbody>

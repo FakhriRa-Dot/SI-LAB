@@ -51,10 +51,10 @@
                         <table class="table mt-3">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>NPM</th>
-                                    <th>Nama</th>
-                                    <th>Keterangan</th>
+                                    <th style="background-color: #0446b0">No</th>
+                                    <th style="background-color: #0446b0">NPM</th>
+                                    <th style="background-color: #0446b0">Nama</th>
+                                    <th style="background-color: #0446b0">Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>

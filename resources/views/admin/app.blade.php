@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>MSI LAB - @yield('title')</title>
+    <title>SI-LAB - @yield('title')</title>
 
     <!-- CSS (Urutkan CSS terlebih dahulu) -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -72,7 +72,8 @@
             </div>
         </div>
     </div>
-
+    
+    
     <!-- JS (Letakkan script di bagian bawah, pastikan Popper.js ada sebelum Bootstrap JS) -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>

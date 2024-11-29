@@ -8,12 +8,12 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>NPM</th>
-                    <th>Nama Mahasiswa</th>
-                    <th>Jumlah Kehadiran</th>
-                    <th>Total Pertemuan</th>
-                    <th>Presentase Kehadiran</th>
+                    <th style="background-color: #0446b0">No</th>
+                    <th style="background-color: #0446b0">NPM</th>
+                    <th style="background-color: #0446b0">Nama Mahasiswa</th>
+                    <th style="background-color: #0446b0">Jumlah Kehadiran</th>
+                    <th style="background-color: #0446b0">Total Pertemuan</th>
+                    <th style="background-color: #0446b0">Presentase Kehadiran</th>
                 </tr>
             </thead>
             <tbody>

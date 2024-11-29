@@ -1,117 +1,61 @@
-/* General Sidebar Styling */
-#sidebar {
-  background: linear-gradient(180deg, #0446b0, #022c7a); /* Gradien warna biru */
-  color: white;
-  width: 250px;
-  position: fixed;
-  height: 100vh; /* Sidebar setinggi layar */
-  padding-top: 20px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto; /* Menambahkan scroll jika konten lebih panjang */
-  transition: transform 0.3s ease;
-  z-index: 1000; /* Pastikan berada di atas konten lainnya */
-}
-
-/* Navbar Items */
-#sidebar .nav-item {
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  transition: background-color 0.3s ease;
-}
-
-/* Navbar Link Styling */
-#sidebar .nav-link {
-  color: white !important; /* Pastikan warna font putih */
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  width: 100%;
-}
-
-/* Icon Styling */
-#sidebar .menu-icon {
-  margin-right: 15px;
-  font-size: 1.2rem;
-}
-
-/* Title Styling */
-#sidebar .menu-title {
-  font-size: 1rem;
-  font-weight: 500;
-  text-transform: capitalize;
-  flex: 1;
-}
-
-/* Hover Effects */
-#sidebar .nav-item:hover {
-  background-color: #033b6b;
-}
-
-#sidebar .nav-link:hover {
-  color: #f1f1f1;
-}
-
-/* Submenu Styling */
-#sidebar .sub-menu {
-  display: none; /* Mulai tersembunyi */
-}
-
-#sidebar .collapse.show + .sub-menu {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Active Item */
-#sidebar .nav-item.active {
-  background-color: #033b6b;
-}
-
-#sidebar .nav-item.active .nav-link {
-  color: #f1f1f1;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-  #sidebar {
-    transform: translateX(-100%); /* Tersembunyi secara default */
-    position: absolute; /* Sidebar menjadi overlay */
-    width: 250px; /* Tetap dengan lebar 250px */
-  }
-
-  #sidebar.open {
-    transform: translateX(0); /* Muncul saat dibuka */
-  }
-
-  .toggle-sidebar {
-    display: block; /* Tampilkan tombol pada layar kecil */
-  }
-
-  .main-content {
-    margin-left: 0; /* Hilangkan margin pada layar kecil */
-  }
-}
-
-/* CSS untuk Tombol Toggle */
-.toggle-sidebar {
-  display: none; /* Hanya muncul di perangkat kecil */
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: #0446b0;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  z-index: 1001; /* Pastikan di atas sidebar */
-}
-
-/* Main Content Styling */
 .main-content {
-  margin-left: 250px; /* Offset konten utama dari sidebar */
+  padding: 20px;
+  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-left: 0;
+}
+
+.sidebar {
+  background-color: #0446b0 !important;
+}
+
+.sidebar .nav-link {
+  color: white !important;
+}
+
+.sidebar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px; /* Reduced margin for closer distance */
+  padding: 10px;
+  background-color: #0446b0;
+  border-radius: 8px;
+}
+
+.logo-img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+.sidebar-logo:hover .logo-img {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.sidebar-menu {
+  margin-top: 0px; /* Reduced margin to bring the menu closer */
+}
+
+
+.sidebar .nav-link:hover {
+  background-color: #033d8c !important;
+  color: white !important;
+}
+
+.sidebar .menu-icon {
+  color: white !important;
+}
+
+.toggle-sidebar {
+  display: none;
+}
+
+.main-content {
   padding: 20px;
   background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -119,7 +63,6 @@
   transition: margin-left 0.3s ease;
 }
 
-/* CSS untuk Tombol */
 .btn {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -130,7 +73,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
 }
 
-/* CSS untuk Kartu */
 .card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
@@ -143,7 +85,6 @@
   margin-bottom: 20px;
 }
 
-/* CSS untuk Tabel */
 .table {
   border: 1px solid #dee2e6;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -161,13 +102,11 @@
   transition: background-color 0.2s ease;
 }
 
-/* CSS untuk Badge */
 .badge {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* CSS untuk Flexbox */
 #kelas-container {
   display: flex;
   flex-wrap: wrap;
@@ -175,12 +114,12 @@
 }
 
 #kelas-container .mb-3 {
-  flex: 1 1 100%; /* Secara default 100% lebar */
+  flex: 1 1 100%;
 }
 
 @media (min-width: 768px) {
   #kelas-container .mb-3 {
-    flex: 1 1 calc(50% - 15px); /* Setiap elemen mengambil 50% lebar */
+    flex: 1 1 calc(50% - 15px);
   }
 }
 
@@ -188,7 +127,6 @@
   margin-top: 15px;
 }
 
-/* Tambahkan Efek Shadow ke Alert */
 .alert {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
@@ -232,4 +170,33 @@
 
 .btn-light:hover {
   background-color: #c9c7c7;
+}
+
+.logout-item .logout-button {
+  background-color: red;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: none;
+}
+
+.logout-item .logout-button:hover {
+  background-color: red;
+  color: white;
+  transition: none;
+}
+
+.logout-item .logout-button:active {
+  background-color: red;
+  color: white;
+  transition: none;
+}
+
+.logout-item .logout-button i {
+  color: white;
 }

@@ -20,10 +20,10 @@
     <table>
         <thead>
             <tr>
-                <th>No</th>
-                <th>NPM</th>
-                <th>Nama</th>
-                <th>Persentase Kehadiran</th>
+                <th style="background-color: #0446b0">No</th>
+                <th style="background-color: #0446b0">NPM</th>
+                <th style="background-color: #0446b0">Nama</th>
+                <th style="background-color: #0446b0">Persentase Kehadiran</th>
             </tr>
         </thead>
         <tbody>

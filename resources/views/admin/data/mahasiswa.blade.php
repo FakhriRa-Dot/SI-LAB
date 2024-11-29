@@ -5,7 +5,7 @@
 @section('content')
 <div class="container mt-3">
     <h1>Data Mahasiswa</h1>
-
+    
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @elseif(session('error'))
@@ -59,12 +59,12 @@
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
-                    <th>No</th>
-                    <th>NPM</th>
-                    <th>Nama Lengkap</th>
-                    <th>No. HP</th>
-                    <th>Kelas</th>
-                    <th>Ket</th>
+                    <th style="background-color: #0446b0">No</th>
+                    <th style="background-color: #0446b0">NPM</th>
+                    <th style="background-color: #0446b0">Nama Lengkap</th>
+                    <th style="background-color: #0446b0">No. HP</th>
+                    <th style="background-color: #0446b0">Kelas</th>
+                    <th style="background-color: #0446b0">Ket</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,21 +80,21 @@
                         @endforeach
                     </td>
                     <td>
-                        <!-- Tombol Edit -->
+                        <!-- Edit Button -->
                         <a href="{{ route('data.mahasiswas.edit', $mhs->npm) }}" class="btn btn-warning btn-sm">
-                            <i class="bi bi-pencil-square"></i> Edit
+                            <i class="fas fa-edit"></i> Edit
                         </a>
-
-                        <!-- Tombol Hapus -->
+                        
+                        <!-- Delete Button -->
                         <form action="{{ route('data.mahasiswas.destroy', $mhs->npm) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus mahasiswa ini?')">
-                                <i class="bi bi-trash"></i> Hapus
+                                <i class="fas fa-trash"></i> Hapus
                             </button>
                         </form>
                     </td>
-                </tr>
+                </tr> 
                 @endforeach
             </tbody>
         </table>
@@ -103,9 +103,8 @@
 
 <script>
     document.getElementById('add-kelas-button').addEventListener('click', function() {
-        // Temukan container untuk input kelas
         const kelasContainer = document.getElementById('kelas-container');
-        const newField = document.createElement('div'); // Buat elemen baru untuk input
+        const newField = document.createElement('div');
         newField.classList.add('mb-3');
         newField.innerHTML = `
             <label for="kelas_id[]" class="form-label">Kelas</label>
@@ -119,11 +118,8 @@
             </select>
             <button type="button" class="btn btn-danger btn-sm mt-2 remove-kelas-button">Hapus</button>
         `;
-
-        // Tambahkan elemen baru ke dalam container
         kelasContainer.appendChild(newField);
 
-        // Tambahkan event listener untuk tombol hapus
         newField.querySelector('.remove-kelas-button').addEventListener('click', function() {
             newField.remove();
         });

@@ -56,12 +56,12 @@
         <table class="table table-striped mt-4">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Mata Kuliah</th>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>Lampiran</th>
-                    <th>Actions</th>
+                    <th style="background-color: #0446b0">No</th>
+                    <th style="background-color: #0446b0">Mata Kuliah</th>
+                    <th style="background-color: #0446b0">Judul</th>
+                    <th style="background-color: #0446b0">Deskripsi</th>
+                    <th style="background-color: #0446b0">Lampiran</th>
+                    <th style="background-color: #0446b0">Actions</th>
                 </tr>
             </thead>
             <tbody>

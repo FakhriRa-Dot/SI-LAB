@@ -7,13 +7,13 @@
       <table class="table table-striped table-bordered table-hover">
           <thead class="thead-dark">
               <tr>
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>NPM</th>
-                  <th>Kelas</th>
-                  <th>Foto</th>
-                  <th>Jumlah Hadir</th>
-                  <th>Presentase (%)</th>
+                  <th style="background-color: #0446b0">No</th>
+                  <th style="background-color: #0446b0">Nama</th>
+                  <th style="background-color: #0446b0">NPM</th>
+                  <th style="background-color: #0446b0">Kelas</th>
+                  <th style="background-color: #0446b0">Foto</th>
+                  <th style="background-color: #0446b0">Jumlah Hadir</th>
+                  <th style="background-color: #0446b0">Presentase (%)</th>
               </tr>
           </thead>
           <tbody>

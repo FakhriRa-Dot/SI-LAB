@@ -15,7 +15,7 @@
 
     <!-- Tombol Tambah Jadwal -->
     <div class="mb-3">
-        <button class="btn btn-primary" onclick="toggleForm()">Tambah Jadwal</button>
+        <button class="btn" style="background-color: #21ded8;" onclick="toggleForm()">Tambah Jadwal</button>
     </div>
 
     <!-- Form Tambah Jadwal -->
@@ -73,7 +73,7 @@
 
             <div class="d-flex justify-content-end">
                 <button type="button" class="btn btn-secondary me-2" onclick="toggleForm()">Batal</button>
-                <button type="submit" class="btn btn-primary">Tambah</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
     </div>
@@ -82,12 +82,12 @@
     <table class="table table-bordered mt-4">
         <thead class="table-primary">
             <tr>
-                <th>Hari</th>
-                <th>Jam</th>
-                <th>Kelas</th>
-                <th>Ruangan</th>
-                <th>Asisten Dosen</th>
-                <th>Aksi</th>
+                <th style="background-color: #0446b0" >Hari</th>
+                <th style="background-color: #0446b0" >Jam</th>
+                <th style="background-color: #0446b0" >Kelas</th>
+                <th style="background-color: #0446b0" >Ruangan</th>
+                <th style="background-color: #0446b0" >Asisten Dosen</th>
+                <th style="background-color: #0446b0" >Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -108,11 +108,15 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="{{ route('jadwal-praktikum.edit', $jadwal->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{ route('jadwal-praktikum.edit', $jadwal->id) }}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
                             <form action="{{ route('jadwal-praktikum.destroy', $jadwal->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?');">Hapus</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?');">
+                                    <i class="fas fa-trash"></i> Hapus
+                                </button>
                             </form>
                         </td>
                     </tr>
@@ -151,9 +155,14 @@
         newItem.innerHTML = `
             <span>${selectedText}</span>
             <input type="hidden" name="asdos_ids[]" value="${selectedValue}">
-            <button type="button" onclick="this.parentNode.remove()" class="btn btn-danger btn-sm">Hapus</button>
+            <button type="button" onclick="this.parentNode.remove()" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i> Hapus
+            </button>
         `;
         asdosList.appendChild(newItem);
     }
 </script>
+
+<!-- Include Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 @endsection
