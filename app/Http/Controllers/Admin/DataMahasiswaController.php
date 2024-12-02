@@ -12,7 +12,7 @@ class DataMahasiswaController extends Controller
     // Display all Mahasiswa data
     public function index()
     {
-        $mahasiswa = Mahasiswa::with('kelas')->get();  // Get all mahasiswa along with their associated classes
+        $mahasiswa = Mahasiswa::with('kelas')->paginate(2); // Get all mahasiswa along with their associated classes
         $kelas = Kelas::all();  // Get all available classes
         return view('admin.data.mahasiswa', compact('mahasiswa', 'kelas'));
     }

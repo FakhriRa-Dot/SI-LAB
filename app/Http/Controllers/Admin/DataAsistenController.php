@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Log;
 class DataAsistenController extends Controller
 {
     public function index()
-    {
+    { 
         $kelas = Kelas::all();
         $mahasiswa = Mahasiswa::all();
-        $asistens = Asisten::with('kelas', 'mahasiswa')->get();
+        $asistens = Asisten::with('kelas', 'mahasiswa')->paginate(1);
         
         return view('admin.data.asisten', compact('kelas', 'asistens', 'mahasiswa'));
     }

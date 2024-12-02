@@ -30,6 +30,7 @@
                 @endforeach
             </tbody>
         </table>
+        
     </div>
 
     <!-- Total Kehadiran -->
@@ -43,4 +44,5 @@
         </h5>
     </div>
 </div>
+
 @endsection

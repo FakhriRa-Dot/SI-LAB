@@ -12,7 +12,7 @@ class JadwalPraktikumController extends Controller
 {
     public function index()
     {
-        $jadwals = JadwalPraktikum::with(['kelas', 'asistens'])->paginate(10);
+        $jadwals = JadwalPraktikum::with(['kelas', 'asistens'])->paginate(1);
         $kelas = Kelas::all();
         $asistens = Asisten::all();
 

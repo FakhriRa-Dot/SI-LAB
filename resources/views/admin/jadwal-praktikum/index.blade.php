@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-4" style="display: flex; flex-direction: column;">
-    <h1 class="text-center mb-4">Jadwal Praktikum</h1>
+    <h1>Jadwal Praktikum</h1>
 
     <!-- Pesan Sukses -->
     @if (session('success'))
@@ -124,6 +124,20 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <!-- Left: Showing X to Y of Z results -->
+        <div>
+            <p class="text-muted mb-0">
+                Showing {{ $jadwals->firstItem() }} to {{ $jadwals->lastItem() }} of {{ $jadwals->total() }} results
+            </p>
+        </div>
+        <!-- Right: Pagination -->
+        <div>
+            {{ $jadwals->links('pagination::bootstrap-4') }}
+        </div>
+    </div>
 </div>
 
 <script>
@@ -165,4 +179,10 @@
 
 <!-- Include Font Awesome -->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<style>
+    .pagination {
+        margin-bottom: 0;
+    }
+</style>
 @endsection
