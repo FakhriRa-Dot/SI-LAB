@@ -13,7 +13,7 @@ class HasilAbsensiAsistenController extends Controller
     public function index()
     {
         $rekapAbsensi = Asisten::with('absensiAsisten', 'kelas') // Eager load relasi
-            ->get()
+            
             ->map(function ($asisten) {
                 $totalHadir = $asisten->absensiAsisten->count(); // Hitung jumlah hadir
                 $totalPertemuan = 8; // Maksimal 8 pertemuan

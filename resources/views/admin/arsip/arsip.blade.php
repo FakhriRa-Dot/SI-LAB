@@ -56,6 +56,25 @@
                 </tbody>
             </table>
         </div>
+
+           <!-- Pagination -->
+           <div class="d-flex justify-content-between align-items-center mt-4">
+            <!-- Left: Showing X to Y of Z results -->
+            <div>
+                <p class="text-muted mb-0">
+                    Showing {{ $arsipPraks->firstItem() }} to {{ $arsipPraks->lastItem() }} of {{ $arsipPraks->total() }} results
+                </p>
+            </div>
+            <!-- Right: Pagination -->
+            <div>
+                {{ $arsipPraks->links('pagination::bootstrap-4') }}
+            </div>
+        </div>
     </div>
+    <style>
+        .pagination {
+            margin-bottom: 0;
+        }
+    </style>
 @endsection
 

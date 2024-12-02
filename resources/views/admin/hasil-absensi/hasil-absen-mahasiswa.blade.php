@@ -43,6 +43,8 @@
             <span class="text-success">{{ number_format(($totalKehadiran / ($totalPertemuan * count($rekapAbsensi))) * 100, 2) }}%</span>
         </h5>
     </div>
+
+    
 </div>
 
 @endsection

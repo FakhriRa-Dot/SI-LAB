@@ -16,6 +16,7 @@ class HasilAbsensiMahasiswaController extends Controller
 
     public function index()
     {
+        
         // Ambil data kelas yang dibagi berdasarkan semester dan mata proyek
         $proyekGanjil = Kelas::where('semester', 'Ganjil')->get()->groupBy('mata_proyek');
         $proyekGenap = Kelas::where('semester', 'Genap')->get()->groupBy('mata_proyek');
@@ -40,10 +41,10 @@ class HasilAbsensiMahasiswaController extends Controller
 
         // Proses absensi untuk setiap mahasiswa
         foreach ($mahasiswas as $mahasiswa) {
-            $absensi = AbsensiMahasiswa::where('id_kelas', $id_kelas)
+            $absensi = AbsensiMahasiswa::where('id_kelas', $id_kelas) 
                 ->where('npm', $mahasiswa->npm)
                 ->get();
-
+                
             $hadirCount = $absensi->where('keterangan', 'HADIR')->count();
 
             // Hitung total kehadiran
@@ -59,6 +60,7 @@ class HasilAbsensiMahasiswaController extends Controller
             ];
         }
 
+        
         // Kirim data ke view
         return view('admin.hasil-absensi.hasil-absen-mahasiswa', [
             'kelas' => $kelas,

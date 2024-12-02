@@ -10,7 +10,7 @@ class AdminArsipController extends Controller
     public function index()
     {
         // Ambil semua data arsip
-        $arsipPraks = ArsipPrak::all();
+        $arsipPraks = ArsipPrak::paginate(1);
 
         // Tampilkan view khusus admin
         return view('admin.arsip.arsip', compact('arsipPraks'));
