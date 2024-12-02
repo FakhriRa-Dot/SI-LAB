@@ -138,7 +138,7 @@
                             <td>{{ $asisten->mahasiswa->no_hp }}</td>
                             <td>
                                 @foreach ($asisten->kelas as $k)
-                                    <span class="badge bg-primary shadow">{{ $k->nama_kelas }}
+                                    <span class="badge" style="background-color: #96f5f9; color: #000;text-shadow: none ">{{ $k->nama_kelas }}
                                         ({{ $k->mata_proyek }})
                                     </span>
                                 @endforeach

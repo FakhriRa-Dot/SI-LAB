@@ -87,9 +87,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/nilai', [App\Http\Controllers\Admin\NilaiController::class, 'index'])->name('admin.nilai');
         Route::delete('/nilai/{id}', [App\Http\Controllers\Admin\NilaiController::class, 'destroy'])->name('admin.delete.nilai');
 
+        Route::post('data/mahasiswa/import', [DataMahasiswaController::class, 'import'])->name('data.mahasiswas.import');
+        Route::get('mahasiswa/export', [DataMahasiswaController::class, 'export'])->name('data.mahasiswas.export');
     });
 
+   
 
+    
+    
 
     // Asisten
     Route::middleware(['asisten'])->group(function () {

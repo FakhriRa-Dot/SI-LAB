@@ -6,7 +6,7 @@
     <!-- Membuat header dengan teks dan tanggal dalam satu baris -->
     <div class="d-flex justify-content-between align-items-center mb-4 position-relative">
         <!-- Teks Selamat Datang -->
-        <h2 class="mb-0">Selamat Datang, Asisten</h2>
+        <h2 class="mb-0">Selamat Datang, {{ $user->name }}</h2>
         
         <!-- Dropdown Tanggal di kanan -->
         <div class="dropdown position-absolute" style="top: 0; right: 0;">
@@ -26,8 +26,8 @@
     <div class="card p-3 mb-4" style="width: 300px;">
         <div class="d-flex align-items-center">
             <div class="flex-grow-1">
-                <p>Nama : Lengkap</p>
-                <p>No. Hp : 08********</p>
+                <p>Nama : {{ $user->name }}</p>
+                <p>No. Hp : {{ $user->no_hp }}</p>
             </div>
             <div class="rounded-circle border border-dark p-4 text-center">Foto</div>
         </div>

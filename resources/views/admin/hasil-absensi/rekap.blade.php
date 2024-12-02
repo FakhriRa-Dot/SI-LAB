@@ -27,7 +27,8 @@
                         <td>{{ $rekap['kelas'] }}</td>
                         <td>
                             @if (!empty($rekap['foto']) && file_exists(public_path('storage/' . $rekap['foto'])))
-                                <img src="{{ asset('storage/' . $rekap['foto']) }}" alt="Foto Asisten" width="50" class="img-thumbnail shadow-sm">
+                            <img src="{{ asset('storage/' . $rekap['foto']) }}" alt="Foto Asisten" 
+                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 0;" class="shadow-sm">                       
                             @else
                                 <span class="text-muted">Tidak Ada Foto</span>
                             @endif

@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($rekapAbsensi as $key => $data)
+                @forelse ($rekapAbsensi as $key => $data)
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $data['npm'] }}</td>
@@ -27,22 +27,34 @@
                         <td>{{ $data['totalPertemuan'] }}</td>
                         <td>{{ $data['persentase'] }}%</td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center">Tidak ada data absensi</td>
+                    </tr>
+                @endforelse
             </tbody>
+            
         </table>
         
     </div>
 
     <!-- Total Kehadiran -->
-    <div class="mt-4 shadow p-3 rounded" style="background-color: #f7f7f7; border-radius: 10px;">
-        <h5>Total Kehadiran: 
-            <span class="text-primary">{{ $totalKehadiran }}</span> / 
-            <span class="text-secondary">{{ $totalPertemuan * count($rekapAbsensi) }}</span>
-        </h5>
-        <h5>Presentase Kehadiran: 
-            <span class="text-success">{{ number_format(($totalKehadiran / ($totalPertemuan * count($rekapAbsensi))) * 100, 2) }}%</span>
-        </h5>
-    </div>
+<div class="mt-4 shadow p-3 rounded" style="background-color: #f7f7f7; border-radius: 10px;">
+    <h5>Total Kehadiran: 
+        <span class="text-primary">{{ $totalKehadiran }}</span> / 
+        <span class="text-secondary">{{ $totalPertemuan * count($rekapAbsensi) }}</span>
+    </h5>
+    <h5>Presentase Kehadiran: 
+        <span class="text-success">
+            @if ($totalPertemuan > 0 && count($rekapAbsensi) > 0)
+                {{ number_format(($totalKehadiran / ($totalPertemuan * count($rekapAbsensi))) * 100, 2) }}%
+            @else
+                0%
+            @endif
+        </span>
+    </h5>
+</div>
+
 
     
 </div>

@@ -103,7 +103,7 @@
                             <td>{{ $jadwal->ruangan }}</td>
                             <td>
                                 @foreach ($jadwal->asistens as $as)
-                                    <span class="badge bg-primary shadow">{{ $as->nama }}</span><br>
+                                    <span class="badge"  style="background-color: #96f5f9; color: #000;text-shadow: none ">{{ $as->nama }}</span><br>
                                 @endforeach
                             </td>
                             <td>

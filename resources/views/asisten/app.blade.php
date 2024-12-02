@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>SI-LAB - @yield('title')</title>
+    <title>SI-LAB  @yield('title')</title>
 
     <!-- CSS (Urutkan CSS terlebih dahulu) -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -34,76 +34,19 @@
 
     <style>
         body {
-
             font-family: "Sour Gummy", serif;
-
         }
 
         #sidebar-wrapper {
             height: 100vh;
-
             width: 200px;
             position: sticky;
-
             top: 0;
-            left: 0;
-            width: 250px;
-            background: #f8f9fa;
-            overflow-y: auto;
-            transition: width 0.3s ease-in-out;
-        }
-
-        .sidebar.collapsed {
-            width: 80px;
-        }
-
-        .sidebar .nav-link {
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar .nav-link span {
-            margin-left: 10px;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .sidebar.collapsed .nav-link span {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .sidebar.collapsed .logo img {
-            width: 40px;
-            height: 40px;
-        }
-
-        .sidebar .toggle-btn {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-        }
-
-        .sidebar .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sidebar .logo img {
-            width: 50px;
-            height: 50px;
         }
 
         .main-content {
             padding: 20px;
-            margin-left: 250px;
-            transition: margin-left 0.3s ease-in-out;
-        }
-
-        .main-content.collapsed {
-            margin-left: 80px;
+            overflow-x: hidden;
         }
 
         .nav-link.active {
