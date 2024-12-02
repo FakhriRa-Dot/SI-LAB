@@ -22,6 +22,7 @@
                     <th style="background-color: #0446b0;">Kelas</th>
                     <th style="background-color: #0446b0;">Lampiran</th>
                     <th style="background-color: #0446b0; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">Aksi</th>
+
                 </tr>
             </thead>
             <tbody>

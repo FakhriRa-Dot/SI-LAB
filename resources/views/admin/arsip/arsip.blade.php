@@ -14,6 +14,7 @@
         @endif
 
         <!-- Tabel Data Arsip -->
+<<<<<<< HEAD
         <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
             <table class="table table-striped mt-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; overflow: hidden; width: 100%; max-width: 1200px;">
                 <thead>
@@ -57,3 +58,4 @@
         </div>
     </div>
 @endsection
+

@@ -27,24 +27,83 @@
 
 
 
+
+
     <!-- Style Kustom -->
     @stack('styles')
 
     <style>
         body {
+
             font-family: "Sour Gummy", serif;
+
         }
 
         #sidebar-wrapper {
             height: 100vh;
+
             width: 200px;
             position: sticky;
+
             top: 0;
+            left: 0;
+            width: 250px;
+            background: #f8f9fa;
+            overflow-y: auto;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar .nav-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .nav-link span {
+            margin-left: 10px;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .sidebar.collapsed .nav-link span {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .sidebar.collapsed .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .sidebar .toggle-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar .logo img {
+            width: 50px;
+            height: 50px;
         }
 
         .main-content {
             padding: 20px;
-            overflow-x: hidden;
+            margin-left: 250px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .main-content.collapsed {
+            margin-left: 80px;
         }
 
         .nav-link.active {
@@ -59,6 +118,7 @@
 </head>
 
 <body>
+
     <div class="container-scroller">
         <!-- Navbar dan Sidebar -->
         @include('partials.navbarasisten') <!-- Pastikan navbar di-include dengan benar -->
@@ -75,6 +135,7 @@
     
     
     <!-- JS (Letakkan script di bagian bawah, pastikan Popper.js ada sebelum Bootstrap JS) -->
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

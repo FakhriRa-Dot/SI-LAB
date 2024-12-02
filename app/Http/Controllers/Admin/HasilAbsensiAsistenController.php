@@ -34,4 +34,5 @@ class HasilAbsensiAsistenController extends Controller
 
         return view('admin.hasil-absensi.rekap', compact('rekapAbsensi'));
     }
+
 }

@@ -203,7 +203,7 @@
 
             newField.querySelector('.remove-kelas-button').addEventListener('click', function() {
                 newField.remove();
-            });
+
         });
 
         $('#toggle-password').click(function() {
@@ -212,6 +212,7 @@
             passwordField.attr('type', type);
         });
     </script>
+
 
     <style>
         .pagination {

@@ -3,6 +3,7 @@
 @section('content')
   <div class="container mt-4">
     <h1 class="text-center mb-4">Rekap Absensi Asisten</h1>
+
     <!-- Tabel Rekap Absensi Asisten -->
     <div class="table-responsive shadow" style="width: 100%; border-radius: 10px;">
         <table class="table table-striped table-bordered table-hover">
