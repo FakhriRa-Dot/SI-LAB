@@ -47,7 +47,7 @@
                     <div class="card card-tale">
                         <div class="card-body">
                             <p class="mb-4">Mahasiswa</p>
-                            <p class="fs-30 mb-2">1200</p>
+                            <p class="fs-30 mb-2">{{ $totalMahasiswa }}</p>
                             <a href="{{ route('data.mahasiswas.index') }}">See Detail</a>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="card card-dark-blue">
                         <div class="card-body">
                             <p class="mb-4">Asisten Dosen</p>
-                            <p class="fs-30 mb-2">500</p>
+                            <p class="fs-30 mb-2">{{ $jumlahAsisten }}</p>
                             <a href="{{ route('data.asistens.index') }}">See Detail</a>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                     <div class="card card-light-blue">
                         <div class="card-body">
                             <p class="mb-4">Jumlah Mata Kuliah Praktikum</p>
-                            <p class="fs-30 mb-2">25</p>
+                            <p class="fs-30 mb-2">11</p>
                             <a href="{{ route('jadwal-praktikum.index') }}">See Detail</a>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                     <div class="card card-light-danger">
                         <div class="card-body">
                             <p class="mb-4">Ruangan Praktikum</p>
-                            <p class="fs-30 mb-2">15</p>
+                            <p class="fs-30 mb-2">3</p>
                             <a href="{{ route('jadwal-praktikum.index') }}">See Detail</a>
                         </div>
                     </div>

@@ -3,29 +3,30 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
 use App\Http\Controllers\AsistenController;
-use App\Http\Controllers\ProfileController;
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Asisten\ArsipController;
+
 use App\Http\Controllers\Asisten\NilaiController;
-use App\Http\Controllers\Asisten\AbsensiAsistenController;
-use App\Http\Controllers\Asisten\AbsensiMahasiswaController;
+use App\Http\Controllers\Asisten\JadwalController;
+use App\Http\Controllers\Admin\AdminArsipController;
+use App\Http\Controllers\Admin\AdminNilaiController;
 
 use App\Http\Controllers\Admin\DataAsistenController;
 use App\Http\Controllers\Admin\DataMahasiswaController;
-use App\Http\Controllers\Admin\HasilAbsensiAsistenController;
 use App\Http\Controllers\Admin\JadwalPraktikumController;
+use App\Http\Controllers\Asisten\AbsensiAsistenController;
 
 
-use App\Http\Controllers\Admin\AdminArsipController;
+use App\Http\Controllers\Asisten\AbsensiMahasiswaController;
 
 
 
+use App\Http\Controllers\Admin\HasilAbsensiAsistenController;
+
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\HasilAbsensiMahasiswaController;
-
-use App\Http\Controllers\Admin\AdminNilaiController;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
     ->name('login')
@@ -57,13 +58,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('asistens/{id}/edit', [DataAsistenController::class, 'edit'])->name('asistens.edit');
         Route::put('asistens/{id}', [DataAsistenController::class, 'update'])->name('asistens.update');
         Route::delete('asistens/{id}', [DataAsistenController::class, 'destroy'])->name('asistens.destroy');
-      
+
         Route::get('/mahasiswas', [DataMahasiswaController::class, 'index'])->name('data.mahasiswas.index');
         Route::post('/mahasiswas', [DataMahasiswaController::class, 'store'])->name('data.mahasiswas.store');
         Route::get('/mahasiswas/{id}/edit', [DataMahasiswaController::class, 'edit'])->name('data.mahasiswas.edit');
         Route::put('/mahasiswas/{id}', [DataMahasiswaController::class, 'update'])->name('data.mahasiswas.update');
         Route::delete('/mahasiswas/{id}', [DataMahasiswaController::class, 'destroy'])->name('data.mahasiswas.destroy');
-        
+
         Route::get('/jadwal-praktikum', [JadwalPraktikumController::class, 'index'])->name('jadwal-praktikum.index');
         Route::get('/jadwal-praktikum/create', [JadwalPraktikumController::class, 'create'])->name('jadwal-praktikum.create');
         Route::post('/jadwal-praktikum/store', [JadwalPraktikumController::class, 'store'])->name('jadwal-praktikum.store');
@@ -74,7 +75,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/hasil-absensi', [HasilAbsensiMahasiswaController::class, 'index'])->name('admin.hasil-absensi.index');
         Route::get('/admin/absensi_mahasiswa', [HasilAbsensiMahasiswaController::class, 'index'])->name('admin.kelas.proyek');
         Route::get('/admin/hasil-absen/{id_kelas}', [HasilAbsensiMahasiswaController::class, 'rekapAbsensi'])->name('admin.rekap.absensi');
-        
+
         Route::get('/admin/rekap-absensi', [HasilAbsensiAsistenController::class, 'index'])->name('admin.rekap');
         // Route::get('/hasil-absensi/download-pdf', [HasilAbsensiMahasiswaController::class, 'downloadPDF'])->name('admin.hasil-absensi.download-pdf');
         // Route::get('/hasil-absensi/download-excel', [HasilAbsensiMahasiswaController::class, 'downloadExcel'])->name('admin.hasil-absensi.download-excel');
@@ -91,10 +92,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('mahasiswa/export', [DataMahasiswaController::class, 'export'])->name('data.mahasiswas.export');
     });
 
-   
 
-    
-    
+
+
+
 
     // Asisten
     Route::middleware(['asisten'])->group(function () {
@@ -121,7 +122,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/arsip/{id}/edit', [ArsipController::class, 'edit'])->name('arsip.edit');
         Route::put('/arsip/{id}', [ArsipController::class, 'update'])->name('arsip.update');
         Route::delete('/arsip/{id}', [ArsipController::class, 'destroy'])->name('arsip.destroy');
+        
+        Route::get('/asisten/jadwal-praktikum', [JadwalController::class, 'index'])->name('asisten.jadwal.index');
     });
+
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

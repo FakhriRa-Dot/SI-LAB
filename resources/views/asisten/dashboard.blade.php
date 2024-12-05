@@ -29,7 +29,16 @@
                 <p>Nama : {{ $user->name }}</p>
                 <p>No. Hp : {{ $user->no_hp }}</p>
             </div>
-            <div class="rounded-circle border border-dark p-4 text-center">Foto</div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="rounded-circle border border-dark overflow-hidden" style="width: 120px; height: 120px;">
+                    <img src="{{ asset('uploads/photos/' . $user->photo) }}" 
+                         alt="User Photo" 
+                         class="img-fluid" 
+                         style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+            
+            
         </div>
     </div>
 

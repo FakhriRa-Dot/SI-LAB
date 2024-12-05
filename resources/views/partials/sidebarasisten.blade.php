@@ -33,6 +33,13 @@
               <span class="menu-title">Arsip Praktikum</span>
           </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('asisten.jadwal.index') }}">
+            <i class="icon-columns menu-icon"></i>
+            <span class="menu-title">Jadwal Praktikum</span>
+        </a>
+    </li>
       
       <!-- Logout -->
       <li class="nav-item">

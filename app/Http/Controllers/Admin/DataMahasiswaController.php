@@ -28,6 +28,7 @@ class DataMahasiswaController extends Controller
         $mahasiswa = $query->paginate(2); // Paginate the results
         $kelas = Kelas::all(); // Get all available classes
 
+
         return view('admin.data.mahasiswa', compact('mahasiswa', 'kelas'));
     }
 
