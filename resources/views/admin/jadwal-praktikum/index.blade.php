@@ -139,7 +139,9 @@
         </div>
     </div>
 </div>
-
+<footer class="text-center mt-4 py-3">
+    <p class="text-muted mb-0">&copy; 2024 Hak Cipta Dilindungi [TIM PPL]</p>
+</footer>
 <script>
     function toggleForm() {
         var form = document.getElementById("form-container");

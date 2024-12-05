@@ -113,7 +113,7 @@
                 <thead class="table-dark">
                     <tr>
                         <th style="background-color: #0446b0; color: white;">No</th>
-                        <th style="background-color: #0446b0; color: white;" >Foto</th>
+                        <th style="background-color: #0446b0; color: white;">Foto</th>
                         <th style="background-color: #0446b0; color: white;">NPM</th>
                         <th style="background-color: #0446b0; color: white;">Nama Lengkap</th>
                         <th style="background-color: #0446b0; color: white;">No. HP</th>
@@ -138,13 +138,15 @@
                             <td>{{ $asisten->mahasiswa->no_hp }}</td>
                             <td>
                                 @foreach ($asisten->kelas as $k)
-                                    <span class="badge" style="background-color: #96f5f9; color: #000;text-shadow: none ">{{ $k->nama_kelas }}
+                                    <span class="badge"
+                                        style="background-color: #96f5f9; color: #000;text-shadow: none ">{{ $k->nama_kelas }}
                                         ({{ $k->mata_proyek }})
                                     </span>
                                 @endforeach
                             </td>
                             <td class="text-center">
-                                <a href="{{ route('asistens.edit', $asisten->id) }}" class="btn btn-warning btn-sm shadow">
+                                <a href="{{ route('asistens.edit', $asisten->id) }}"
+                                    class="btn btn-warning btn-sm shadow">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
                                 <form action="{{ route('asistens.destroy', $asisten->id) }}" method="POST"
@@ -179,38 +181,43 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="text-center mt-4 py-3">
+        <p class="text-muted mb-0">&copy; 2024 Hak Cipta Dilindungi [TIM PPL]</p>
+    </footer>
+
     <!-- Script -->
     <script>
         const kelasData = @json($kelas);
 
         document.getElementById('add-kelas-button').addEventListener('click', function() {
-            const kelasContainer = document.getElementById('kelas-container');
-            const newField = document.createElement('div');
-            newField.classList.add('mb-3');
-            newField.innerHTML = ` 
+                    const kelasContainer = document.getElementById('kelas-container');
+                    const newField = document.createElement('div');
+                    newField.classList.add('mb-3');
+                    newField.innerHTML = ` 
                 <label for="kelas_id[]" class="form-label">Kelas</label>
                 <select class="form-select shadow" name="kelas_id[]" required>
                     <option value="">Pilih Kelas</option>
                     ${kelasData.map(kelas => `
-                                <option value="${kelas.id_kelas}">
-                                    ${kelas.nama_kelas} - ${kelas.mata_proyek}
-                                </option>
-                            `).join('')}
+                                    <option value="${kelas.id_kelas}">
+                                        ${kelas.nama_kelas} - ${kelas.mata_proyek}
+                                    </option>
+                                `).join('')}
                 </select>
                 <button type="button" class="btn btn-danger btn-sm mt-2 shadow remove-kelas-button">Hapus</button>
             `;
-            kelasContainer.appendChild(newField);
+                    kelasContainer.appendChild(newField);
 
-            newField.querySelector('.remove-kelas-button').addEventListener('click', function() {
-                newField.remove();
+                    newField.querySelector('.remove-kelas-button').addEventListener('click', function() {
+                        newField.remove();
 
-        });
+                    });
 
-        $('#toggle-password').click(function() {
-            const passwordField = $('#password-field');
-            const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
-            passwordField.attr('type', type);
-        });
+                    $('#toggle-password').click(function() {
+                        const passwordField = $('#password-field');
+                        const type = passwordField.attr('type') === 'password' ? 'text' : 'password';
+                        passwordField.attr('type', type);
+                    });
     </script>
 
 
